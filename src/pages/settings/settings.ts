@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { WeatherProvider } from '../../providers/weather/weather';
 import { HomePage } from '../home/home'
 
 @Component({
@@ -10,15 +9,8 @@ import { HomePage } from '../home/home'
 export class SettingsPage {
   category:any;
   limit:any;
-  constructor(public navCtrl: NavController,private weatherProvider:WeatherProvider) {
+  constructor(public navCtrl: NavController) {
     this.defaults();
-  }
-
-  ionViewWillEnter(){
-
-
-    this.getPosts(this.category,this.limit);
-
   }
   defaults(){
   	if(localStorage.getItem('category')!=null){
@@ -38,20 +30,7 @@ export class SettingsPage {
   	}
     
   }
-
-  getPosts(category,limit){
-    this.weatherProvider.getPosts(category,limit).subscribe(weather =>{
-      console.log(weather)
-      this.items=weather['data']['children']
-    });
-  }
-  viewPosts(item){
-  this.navCtrl.push(DetailPage,{item:item});
-
-  }
-  changeCat(){
-    this.getPosts(this.category,this.limit);
-  }
+  
   setDefaults(){
   localStorage.setItem('category',this.category);
   localStorage.setItem('limit',this.limit);
