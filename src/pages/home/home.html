@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Welcome to Ionic!</h2>
+<!--   <button ion-button color="energized" (click)="refreshFunction()" >Refresh</button>
+ -->  
+    <ion-list>
+      <ion-item>
+        <ion-label fixed>Category</ion-label>
+        <ion-select (ionChange)="changeCat()" [(ngModel)]="category" name="category">
+          <ion-option value="sports">Sports</ion-option>
+          <ion-option value="food">Food</ion-option>
+          <ion-option value="music">Music</ion-option>
+          <ion-option value="funny">Funny</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>  
+    <ion-list>
+    <ion-item *ngFor="let item of items" inset>
+      <ion-thumbnail *ngIf=" item.data.thumbnail " item-left>
+        <img src="{{item.data.thumbnail}}">
+      </ion-thumbnail>
+      <h3>{{item.data.title}}</h3>
+      <p>
+        <ion-icon name="thumbs-up">{{ item.data.score }}</ion-icon>&nbsp;&nbsp;
+        <ion-icon name="chatboxes">{{ item.data.num_comments }}</ion-icon>
+      </p>
+      <!-- <button ion-item (click)="itemSelected(data)" >
+         {{data}}
+      </button>  -->
+   <button ion-button clear item-right (click)=" viewPosts(item.data) ">View</button>
+    </ion-item>
+  </ion-list>
+    <!-- <ion-card>
+      <img src={{displayPicture}}/>
+      <div class="card-title">{{displayName}}</div>
+      
+    </ion-card> -->
+    
+  
+</ion-content>
